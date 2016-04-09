@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
+    <entity name="Entity" representedClassName="Entity" syncable="YES">
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="route" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Route" inverseName="location" inverseEntity="Route" syncable="YES"/>
+    </entity>
+    <entity name="Route" representedClassName="Route" syncable="YES">
+        <attribute name="averageVelocity" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="beginDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="feedBack" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="runState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalDistances" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="totalTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="location" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entity" inverseName="route" inverseEntity="Entity" syncable="YES"/>
+        <relationship name="velocity" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Velocity" inverseName="route" inverseEntity="Velocity" syncable="YES"/>
+    </entity>
+    <entity name="Velocity" representedClassName="Velocity" syncable="YES">
+        <attribute name="speed" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="route" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Route" inverseName="velocity" inverseEntity="Route" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Entity" positionX="-108" positionY="18" width="128" height="90"/>
+        <element name="Route" positionX="9" positionY="279" width="128" height="180"/>
+        <element name="Velocity" positionX="196" positionY="54" width="128" height="75"/>
+    </elements>
+</model>
