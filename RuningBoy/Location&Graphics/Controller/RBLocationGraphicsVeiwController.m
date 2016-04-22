@@ -2,7 +2,7 @@
 //  RBLocationGraphicsVeiwController.m
 //  RuningBoy
 //
-//  Created by marskey on 16/3/23.
+//  Created by marskey on 16/3/23. 
 //  Copyright © 2016年 marskey. All rights reserved.
 
 #import "RBLocGraphDataShowPlateView.h"
@@ -13,6 +13,8 @@
 #import "RBrunactivitiesVC.h"
 #import "RBrunmusicVC.h"
 #import "Route.h"
+#import "RBWGS84TOGCJ02.h"
+
 #define NETPOST @"http://music.163.com/eapi/v3/playlist/detail/"
 @interface RBLocationGraphicsVeiwController ()<CLLocationManagerDelegate, MKMapViewDelegate>
 // 底部按钮
@@ -31,7 +33,8 @@
 @property (nonatomic, copy) NSString *saveState;
 // coreDataManager
 @property (nonatomic, retain) RBCoreDataTool *coreDataManager;
-
+// realCoordinate
+@property (nonatomic, assign) CLLocationCoordinate2D coord;
 @end
 
 @implementation RBLocationGraphicsVeiwController
@@ -58,7 +61,7 @@
 {
     if (!_locAndPlayerScrollView) {
         _locAndPlayerScrollView = [[UIScrollView alloc]init];
-        _locAndPlayerScrollView.scrollEnabled = YES;
+        _locAndPlayerScrollView.scrollEnabled = NO;
         _locAndPlayerScrollView.pagingEnabled = YES;
         _locAndPlayerScrollView.bounces = NO;
         [self.view addSubview:_locAndPlayerScrollView];
@@ -103,7 +106,7 @@
         _mapView = [MKMapView new];
         _mapView.delegate = self;
         _mapView.showsUserLocation = YES;
-        _mapView.scrollEnabled = NO;
+        _mapView.scrollEnabled = YES;
         _mapView.mapType = MKMapTypeStandard;
         [self.locAndPlayerScrollView addSubview:_mapView];
         __weak typeof(self)WeakSelf = self;
@@ -187,6 +190,7 @@
     }
     
 }
+
 - (NSString *)timestringFromTiem:(NSInteger)second{
     NSInteger h = second / 3600;
     NSInteger min = second / 60;
@@ -205,12 +209,14 @@
         }
     }
 }
+
 - (NSInteger)timeFromString:(NSString *)string{
     NSArray *strs = [string componentsSeparatedByString:@":"];
     NSString *den = strs.firstObject;
     NSString *dec = strs.lastObject;
     return den.intValue * 60 + dec.intValue;
 }
+
 // nav setup
 - (void)setup
 {
@@ -286,8 +292,15 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
     CLLocation *loc = locations.lastObject;
-    [manager stopUpdatingLocation]; 
-    NSLog(@"当前经度:%f, 当前纬度:%f", loc.coordinate.longitude, loc.coordinate.latitude);
+    // inside
+    if (![RBWGS84TOGCJ02 isLocationOutOfChina:loc.coordinate]) {
+        self.coord = [RBWGS84TOGCJ02 transformFromWGSToGCJ:loc.coordinate];
+    }else{
+        self.coord = loc.coordinate;
+    }
+
+    [manager stopUpdatingLocation];
+//    NSLog(@"当前经度:%f, 当前纬度:%f", loc.coordinate.longitude, loc.coordinate.latitude);
     
     
 }
@@ -296,12 +309,12 @@
 #pragma mark - MapView Delegate Method
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    [self.mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
+    [self.mapView setCenterCoordinate:self.coord animated:YES];
     // 显示区域经纬度范围
     MKCoordinateSpan span = MKCoordinateSpanMake(0.031109, 0.024153);
-    MKCoordinateRegion region = MKCoordinateRegionMake(userLocation.location.coordinate, span);
+    MKCoordinateRegion region = MKCoordinateRegionMake(self.coord, span);
     [self.mapView setRegion:region animated:YES];
-    NSLog(@"map loc longitude :%f", userLocation.coordinate.longitude);
+//    NSLog(@"map loc longitude :%f", userLocation.coordinate.longitude);
     
 }
 
@@ -363,6 +376,7 @@
         [self makeTabBarHidden:NO];
     }
 }
+
 // 显示底部按钮
 - (void)showRunBottomBtn
 {
@@ -412,9 +426,16 @@
     //    [UIView commitAnimations];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+    [[UIImageView new] sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@""] options:nil progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        
+    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    
+    }];
 }
 
 /*

@@ -71,18 +71,19 @@ static NSString *reuseidentiferrunlistheaderview = @"reuseidentiferrunlistheader
     self.tableView.rowHeight = MLF_Height(92, iPhone4);
     self.tableView.sectionFooterHeight = 0;
 
-    [self.tableView registerClass:[RBrunActiListHeaderView class] forHeaderFooterViewReuseIdentifier:reuseidentiferrunlistheaderview];
+//    [self.tableView registerClass:[RBrunActiListHeaderView class] forHeaderFooterViewReuseIdentifier:reuseidentiferrunlistheaderview];
     [self.view addSubview:self.tableView];
 }
 // headerview
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    RBrunActiListHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reuseidentiferrunlistheaderview];
-        return headerView;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    RBrunActiListHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reuseidentiferrunlistheaderview];
+//    
+//        return headerView;
+//}
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return MLF_Height(21, iPhone4);
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return MLF_Height(21, iPhone4);
+//}
 
 #pragma mark - tableview delegate method
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

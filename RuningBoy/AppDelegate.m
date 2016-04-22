@@ -1,10 +1,10 @@
 //
 //  AppDelegate.m
 //  RuningBoy
-//
+//  
 //  Created by marskey on 16/3/23.
 //  Copyright © 2016年 marskey. All rights reserved.
-//
+//  
 
 #import "AppDelegate.h"
 #import "RBTabBarController.h"
@@ -18,12 +18,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    
+    NSLog(@"=======%@", [self uuid]);
     [self setup];
     return YES;
 }
 
-
+-  (NSString*)uuid{
+    
+    CFUUIDRef puuid = CFUUIDCreate( nil );
+    CFStringRef uuidString = CFUUIDCreateString( nil, puuid );
+    NSString * result = (NSString *)CFBridgingRelease(CFStringCreateCopy( NULL, uuidString));
+    CFRelease(puuid);
+    CFRelease(uuidString);
+    return result;
+}
 - (void)setup{
     RBTabBarController *tabbarVC = [[RBTabBarController alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

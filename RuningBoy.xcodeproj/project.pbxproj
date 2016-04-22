@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		A3A6778E0B9FCD4BD9DED58A /* libPods-RuningBoy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E600FB2398D4B023BF7B78F /* libPods-RuningBoy.a */; };
 		BFDEF4DA1CA5132E00CB5905 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFDEF4D91CA5132E00CB5905 /* Info.plist */; };
+		EF1276DA1CCA105700AA5DB1 /* RBWGS84TOGCJ02.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1276D91CCA105700AA5DB1 /* RBWGS84TOGCJ02.m */; };
 		EF21EA861CB564CE0051731B /* RBvelocityTimeExcelView.m in Sources */ = {isa = PBXBuildFile; fileRef = EF21EA851CB564CE0051731B /* RBvelocityTimeExcelView.m */; };
+		EF4D3AC91CBA7FFA002BF8A2 /* RBFMDB_lf.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4D3AC81CBA7FFA002BF8A2 /* RBFMDB_lf.m */; };
+		EF4D3AD11CBBA18F002BF8A2 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EF4D3AD01CBBA18F002BF8A2 /* icon.png */; };
 		EF7E721E1CAE948200A8A185 /* RBlocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7E721D1CAE948200A8A185 /* RBlocationService.m */; };
 		EFACF8DB1CA9FC4800557D4A /* RBrunTemporunExcelView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFACF8DA1CA9FC4800557D4A /* RBrunTemporunExcelView.m */; };
 		EFACF8DE1CA9FC9100557D4A /* RBrunendShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFACF8DD1CA9FC9100557D4A /* RBrunendShareView.m */; };
@@ -86,8 +89,13 @@
 		4E600FB2398D4B023BF7B78F /* libPods-RuningBoy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RuningBoy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E675D2821763FE68ADC114 /* Pods-RuningBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RuningBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-RuningBoy/Pods-RuningBoy.release.xcconfig"; sourceTree = "<group>"; };
 		BFDEF4D91CA5132E00CB5905 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF1276D81CCA105700AA5DB1 /* RBWGS84TOGCJ02.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBWGS84TOGCJ02.h; sourceTree = "<group>"; };
+		EF1276D91CCA105700AA5DB1 /* RBWGS84TOGCJ02.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBWGS84TOGCJ02.m; sourceTree = "<group>"; };
 		EF21EA841CB564CE0051731B /* RBvelocityTimeExcelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBvelocityTimeExcelView.h; sourceTree = "<group>"; };
 		EF21EA851CB564CE0051731B /* RBvelocityTimeExcelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBvelocityTimeExcelView.m; sourceTree = "<group>"; };
+		EF4D3AC71CBA7FFA002BF8A2 /* RBFMDB_lf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBFMDB_lf.h; sourceTree = "<group>"; };
+		EF4D3AC81CBA7FFA002BF8A2 /* RBFMDB_lf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBFMDB_lf.m; sourceTree = "<group>"; };
+		EF4D3AD01CBBA18F002BF8A2 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		EF7E721C1CAE948200A8A185 /* RBlocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBlocationService.h; sourceTree = "<group>"; };
 		EF7E721D1CAE948200A8A185 /* RBlocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBlocationService.m; sourceTree = "<group>"; };
 		EFACF8D91CA9FC4800557D4A /* RBrunTemporunExcelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBrunTemporunExcelView.h; sourceTree = "<group>"; };
@@ -320,6 +328,7 @@
 				EFC87B291CA23BE7005D310F /* Main.storyboard */,
 				EFC87B2F1CA23BE7005D310F /* Assets.xcassets */,
 				EFC87DDF1CA94572005D310F /* Images.xcassets */,
+				EF4D3AD01CBBA18F002BF8A2 /* icon.png */,
 				BFDEF4D91CA5132E00CB5905 /* Info.plist */,
 				EFC87B311CA23BE7005D310F /* LaunchScreen.storyboard */,
 				EFC87B2C1CA23BE7005D310F /* RuningBoy.xcdatamodeld */,
@@ -426,6 +435,8 @@
 		EFC87B691CA23EA9005D310F /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				EF1276D81CCA105700AA5DB1 /* RBWGS84TOGCJ02.h */,
+				EF1276D91CCA105700AA5DB1 /* RBWGS84TOGCJ02.m */,
 				EF7E721C1CAE948200A8A185 /* RBlocationService.h */,
 				EF7E721D1CAE948200A8A185 /* RBlocationService.m */,
 				EFC87B6A1CA23EA9005D310F /* NSArray+Log.h */,
@@ -442,6 +453,8 @@
 				EFC87D7E1CA91E85005D310F /* LDPNetWorkTool.m */,
 				EFC87B881CA2481C005D310F /* RBCoreDataTool.h */,
 				EFC87B891CA2481C005D310F /* RBCoreDataTool.m */,
+				EF4D3AC71CBA7FFA002BF8A2 /* RBFMDB_lf.h */,
+				EF4D3AC81CBA7FFA002BF8A2 /* RBFMDB_lf.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -566,6 +579,7 @@
 			files = (
 				BFDEF4DA1CA5132E00CB5905 /* Info.plist in Resources */,
 				EFC87B331CA23BE7005D310F /* LaunchScreen.storyboard in Resources */,
+				EF4D3AD11CBBA18F002BF8A2 /* icon.png in Resources */,
 				EFC87B301CA23BE7005D310F /* Assets.xcassets in Resources */,
 				EFC87DE01CA94572005D310F /* Images.xcassets in Resources */,
 				EFC87B2B1CA23BE7005D310F /* Main.storyboard in Resources */,
@@ -652,6 +666,7 @@
 				EFC87C951CA7826E005D310F /* RBruninfoDetailVC.m in Sources */,
 				EFACF9471CAAA9E100557D4A /* RBrunprepareVC.m in Sources */,
 				EFCE4A351CB40D5800F6D157 /* Velocity+CoreDataProperties.m in Sources */,
+				EF4D3AC91CBA7FFA002BF8A2 /* RBFMDB_lf.m in Sources */,
 				EFC87B721CA23EA9005D310F /* NSArray+Log.m in Sources */,
 				EFC87C2E1CA55773005D310F /* RBLocGraphDataShowPlateView.m in Sources */,
 				EFC87B841CA2477C005D310F /* RBTabBarController.m in Sources */,
@@ -673,6 +688,7 @@
 				EFCE4A361CB40D5800F6D157 /* Velocity.m in Sources */,
 				EFACF9461CAAA9E100557D4A /* RBrunningEndVC.m in Sources */,
 				EFACF93D1CAA6ED600557D4A /* RBrunmusicPlistDetailHeaderView.m in Sources */,
+				EF1276DA1CCA105700AA5DB1 /* RBWGS84TOGCJ02.m in Sources */,
 				EFC87B901CA24B4B005D310F /* RBLocationGraphicsVeiwController.m in Sources */,
 				EFACF92D1CAA574F00557D4A /* RBrunDetailDataVC.m in Sources */,
 				EFACF92A1CAA50AE00557D4A /* RBrunActiListHeaderView.m in Sources */,
@@ -754,7 +770,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -776,6 +792,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "30ace83f-318a-4e3e-940e-66dffe35303f";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -798,7 +815,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -813,6 +830,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "30ace83f-318a-4e3e-940e-66dffe35303f";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

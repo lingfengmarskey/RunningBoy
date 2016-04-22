@@ -14,6 +14,8 @@
 #import "Entity.h"
 #import "Velocity.h"
 #import "Route.h"
+#import "RBWGS84TOGCJ02.h"
+
 NSString *const CurrentMusicInfo = @"当前音乐/无音乐";
 @interface RBrunningBeginVC ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate>
 // time down view
@@ -309,7 +311,7 @@ static NSInteger runtime = 0;
                 [UIView animateWithDuration:0.2 animations:^{
                     weakSelf.runbeginView.currentLable.alpha = 1;
                     weakSelf.runbeginView.startBtn.alpha = 1;
-                    weakSelf.runbeginView.currentLable.text = CurrentMusicInfo;
+//                    weakSelf.runbeginView.currentLable.text = CurrentMusicInfo;
                     weakSelf.runbeginView.lastSongBtn.alpha = 1;
                     weakSelf.runbeginView.nextSontBtn.alpha = 1;
                     weakSelf.runbeginView.playOrPauseBtn.alpha = 1;
@@ -395,7 +397,7 @@ static NSInteger runtime = 0;
     }else if (sender.state == UIGestureRecognizerStateEnded){
         NSLog(@"3 sec after finger lifted ");
 #pragma mark - To Run End
-        [RBlocationService presentAlert:[NSString stringWithFormat:@"album.count=%ld", (unsigned long)self.locationRotes.count] onViewController:self Completion:^{
+//        [RBlocationService presentAlert:[NSString stringWithFormat:@"album.count=%ld", (unsigned long)self.locationRotes.count] onViewController:self Completion:^{
 //  SAVE in CORE DATA
             if (self.locationRotes.count) {
                 
@@ -438,7 +440,7 @@ static NSInteger runtime = 0;
             RBrunningEndVC *endVC = [RBrunningEndVC new];
             endVC.beginDate = weakSelf.currentDate;
             [weakSelf.navigationController pushViewController:endVC animated:YES];
-        }];
+//        }];
         
     }
 }
@@ -548,8 +550,14 @@ static NSInteger runtime = 0;
     /**
      *  save location
      */
-    [self.locationRotes addObject:[locations lastObject]];
     
+    CLLocationCoordinate2D coord = locations.lastObject.coordinate;
+    if (![RBWGS84TOGCJ02 isLocationOutOfChina:coord]) {
+      coord = [RBWGS84TOGCJ02 transformFromWGSToGCJ:coord];
+    }
+    
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+    [self.locationRotes addObject:location];
     /*                    ^
      *  save velocity     |
      *                    |

@@ -22,7 +22,10 @@
 - (void)setup{
     RBLocationGraphicsVeiwController *locVC = [[RBLocationGraphicsVeiwController alloc] init];
     [Tools addchildViewControllerNav:locVC ForTabBar:self TabBarItemTitle:@"RUN" TabBarImageNameOfNormalState:@"tabbar_run" TabBarImageNameOfSlected:@"tabbar_run"];
-
+    
+//    UIView *temp = [UIView new];
+//    temp.layer.contents;
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

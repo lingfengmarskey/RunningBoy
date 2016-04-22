@@ -32,8 +32,10 @@ static NSString *RunCollectionCell = @"RunCollectionCell";
             RBrunprepareView *temp = [[RBrunprepareView alloc] initWithFrame:CGRectMake(0.25 * WIDTH + 0.5 * WIDTH * i, 0, 0.5 * WIDTH, HEIGHT - 49 - 64)];
             temp.runprepareViewTitle.text = @[@"基本跑步", @"定时跑步", @"距离跑步"][i];
             temp.runprepareViewImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"runprepare_%d", i + 1]];
-
             temp.alpha = 0.4;
+            if (i == 0) {
+                temp.alpha = 1;
+            }
             temp.tag = 1001 + i;
             [_bgscrollView addSubview:temp];
         }
@@ -58,7 +60,8 @@ static NSString *RunCollectionCell = @"RunCollectionCell";
     return _bottmstartBtn;
 }
 // collection View - deprecated************
-- (UICollectionView *)collectionView {
+- (UICollectionView *)collectionView
+{
     if (!_collectionView) {
         UICollectionViewFlowLayout *flowlayout = [UICollectionViewFlowLayout new];
         flowlayout.minimumInteritemSpacing = 0;
@@ -76,7 +79,8 @@ static NSString *RunCollectionCell = @"RunCollectionCell";
     return _collectionView;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self.view addSubview:self.bgscrollView];
 //    [self.view addSubview:self.collectionView];
@@ -84,9 +88,38 @@ static NSString *RunCollectionCell = @"RunCollectionCell";
     
 }
 #pragma mark - start Action
-- (void)startRun{
+- (void)startRun {
     RBrunningBeginVC *beginVC = [RBrunningBeginVC new];
-    [self.navigationController pushViewController:beginVC animated:YES];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"设置" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *confrim = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.navigationController pushViewController:beginVC animated:YES];
+    }];
+    UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }];
+    [alert addAction:confrim];
+    [alert addAction:cancle];
+
+    if (self.bgscrollView.contentOffset.x < 0.5 * WIDTH) {
+        // basic mode
+        [self.navigationController pushViewController:beginVC animated:YES];
+    }else if (self.bgscrollView.contentOffset.x == WIDTH){
+        // distance mode
+        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+           textField.placeholder = @"输入距离";
+        }];
+        [self presentViewController:alert animated:YES completion:^{
+        }];
+    }else{
+        // limit time mode
+        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.placeholder = @"输入时间";
+        }];
+        [self presentViewController:alert animated:YES completion:^{
+        }];
+    }
+    
 }
 #pragma mark - collectionView Delegate Method --- Deprecated
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{

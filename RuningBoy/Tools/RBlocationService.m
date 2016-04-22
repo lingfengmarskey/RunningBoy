@@ -50,7 +50,6 @@
     [alertController addAction:alertAction];
     [vc presentViewController:alertController animated:YES completion:^{
     }];
-    
 }
 // drawRoute
 + (void)drawWalkPolylineWithlocationArr:(NSArray *)locationsArr onMap:(MKMapView *)mapView
@@ -59,14 +58,18 @@
     // 轨迹点数组个数
     NSUInteger count = locationsArr.count;
     // 动态分配存储空间
+    
     // MapPoint是个结构体：地理坐标点，用直角地理坐标表示 X：横坐标 Y：纵坐标
     MKMapPoint *tempPoints = malloc(sizeof(MKMapPoint) * locationsArr.count);
-    // 遍历数组
     
+    // 遍历数组
     [locationsArr enumerateObjectsUsingBlock:^(CLLocation *location, NSUInteger idx, BOOL *stop) {
         MKMapPoint locationPoint = MKMapPointForCoordinate(location.coordinate);
-
+        
+        
+        
         tempPoints[idx] = locationPoint;
+        NSLog(@"+++=======%f  %f", location.coordinate.latitude, location.coordinate.longitude);
     }];
 
     MKPolyline *polyLine = [MKPolyline polylineWithPoints:tempPoints count:count];

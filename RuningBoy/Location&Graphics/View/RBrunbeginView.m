@@ -144,7 +144,7 @@
     // last song btn
     self.lastSongBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.lastSongBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [self.lastSongBtn setImage:[UIImage imageNamed:@"runboy_lastsong_2"] forState:UIControlStateNormal];
+//    [self.lastSongBtn setImage:[UIImage imageNamed:@"runboy_lastsong_2"] forState:UIControlStateNormal];
     [self addSubview:self.lastSongBtn];
     [self.lastSongBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.offset(-MLF_Height(12, iPhone4));
@@ -156,7 +156,7 @@
     // next song btn
     self.nextSontBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.nextSontBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [self.nextSontBtn setImage:[UIImage imageNamed:@"runboy_nextsong_2"] forState:UIControlStateNormal];
+//    [self.nextSontBtn setImage:[UIImage imageNamed:@"runboy_nextsong_2"] forState:UIControlStateNormal];
     [self addSubview:self.nextSontBtn];
     [self.nextSontBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.offset(-MLF_Height(12, iPhone4));
@@ -167,7 +167,7 @@
     
     // play or pause btn
     self.playOrPauseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.playOrPauseBtn setImage:[UIImage imageNamed:@"runboy_play_2"] forState:UIControlStateNormal];
+//    [self.playOrPauseBtn setImage:[UIImage imageNamed:@"runboy_play_2"] forState:UIControlStateNormal];
     [self addSubview:self.playOrPauseBtn];
     self.playOrPauseBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
     __weak typeof(self) WeakSelf = self;

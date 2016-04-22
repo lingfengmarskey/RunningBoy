@@ -9,6 +9,7 @@
 #import "RBruninfoSettingVC.h"
 #import "RBruninfoDetailVC.h"
 #import "RBLocationGraphicsVeiwController.h"
+
 @interface RBruninfoSettingVC ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, retain) UITableView *tableView;
 @property (nonatomic, retain) NSArray *modelArr;
@@ -17,6 +18,7 @@
 @property (nonatomic, retain) NSArray *listArr;
 
 @property (nonatomic, retain) RBruninfoDetailVC *detailVC;
+@property (nonatomic, retain) RBCoreDataTool *coreDataManager;
 
 @end
 
@@ -47,6 +49,12 @@
         _listArr = @[@"默认 >>", @"可选 >>", @"可选 >>", @"未设定 >>"];
     }
     return _listArr;
+}
+- (RBCoreDataTool *)coreDataManager{
+    if (!_coreDataManager) {
+        _coreDataManager = [RBCoreDataTool defaultCoreDataManager];
+    }
+    return _coreDataManager;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -88,13 +96,17 @@
             result = NO;
         }
     }
-    if (result) {
-        if (sender.tag) {
+    if (result)
+    {
+        
+        if (sender.tag)
+        {
             sender.tag = 0;
             [sender setTitle:@"保存" forState:UIControlStateNormal];
             sender.backgroundColor = [UIColor grayColor];
         }
-        else{
+        else
+        {
             sender.tag = 1;
             [sender setTitle:@"已保存" forState:UIControlStateNormal];
             sender.backgroundColor = [UIColor redColor];
@@ -105,6 +117,7 @@
             // 发送已保存的info
             [[NSNotificationCenter defaultCenter] postNotificationName:@"RunInfoSettingStateString" object:nil userInfo:@{@"savestate" : @"saved"}];
         }
+        
     }else{
         // 保存默认值
   
@@ -190,6 +203,32 @@
         cell.detailTextLabel.text = str;
     };
     [self.navigationController pushViewController:detailVC animated:YES];
+}
+
+- (BOOL)isEntityExist:(NSManagedObjectContext *)managedObjectContext EntityName:(NSString *)entityName Identifier:(NSDate *)identifierDate
+                Class:(Class *)className
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSError *error = nil;
+    NSArray *fetchedObjects = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    BOOL result = NO;
+    if (fetchedObjects == nil)
+    {
+        NSLog(@"no result");
+    }
+    else
+    {
+        for (Class temp in fetchedObjects) {
+//            if ([temp.beginDate isEqual: identifierDate]) {
+//                result = YES;
+//            }else{
+//                result = NO;
+//            }
+        }
+    }
+    return result;
 }
 /*
 #pragma mark - Navigation

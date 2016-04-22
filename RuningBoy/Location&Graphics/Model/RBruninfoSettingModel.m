@@ -36,7 +36,7 @@
     
     RBruninfoSettingModel *modelgender = [RBruninfoSettingModel new];
     modelgender.runSettingTitle = @"性别";
-    modelgender.componnetArr = @[@[@"男性", @"女性", @"你还想干啥"]];
+    modelgender.componnetArr = @[@[@"男性", @"女性"]];
 
     return @[model, modelstare, modelweight, modelgender];
 }
@@ -67,7 +67,7 @@
     
     RBruninfoSettingModel *modelgender = [RBruninfoSettingModel new];
     modelgender.runSettingTitle = @"性别";
-    modelgender.componnetArr = @[@[@"男性", @"女性", @"你还想干啥"]];
+    modelgender.componnetArr = @[@[@"男性", @"女性"]];
     
     return @[model, modelstare, modelweight, modelgender];
     
